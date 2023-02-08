@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/07 16:29:21 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:57:48 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,95 @@ int	get_fd(int ac, char **av)
 	return (fd);
 }
 
-// char	*maptostr(fd)
-// {
-	
-// }
+char	*maptostr(int fd)
+{
+	char	*str;
+	char	*line;
+
+	str = get_next_line(fd);
+	if (!str)
+	{
+		perror("Error\n");
+		exit (errno);
+	}
+	line = get_next_line(fd);
+	while (line)
+	{
+		str = ft_strjoin2(str, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (str);
+}
+
+void	check_excess(char *str)
+{
+	int		i;
+	char	*elts;
+
+	elts = "10PCE\n";
+	if (str[0] == '\n' || str[ft_strlen(str) - 1] == '\n')
+	{
+		write(2, "Error\nNew line at begining or end of map", 41);
+		free (str);
+		exit(EXIT_FAILURE);
+	}
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_strchr(elts, str[i]))
+		{
+			write(2, "Error\nUndifined map element(s)", 31);
+			free (str);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
+char	**split_checkrec(char *str)
+{
+	char	**split;
+	int		i;
+
+	i = -1;
+	split = ft_split(str, '\n');
+	if (!split)
+	{
+		perror("Error\nSplit failure");
+		free(str);
+		exit (errno);
+	}
+	while (split[++i + 1])
+	{
+		if (ft_strlen(split[i]) != ft_strlen(split[i + 1]))
+		{
+			write(2, "Error\nMap not rectangular", 26);
+			i = -1;
+			while (split[++i])
+				free(split[i]);
+			free(split);
+			free(str);
+			exit(EXIT_FAILURE);
+		}
+	}
+	return (split);
+}
 
 void	map_parsing(int ac, char **av)
 {
 	int		fd;
 	char	*str;
-	char	*line;
 	char	**split;
 
 	fd = get_fd(ac, av);
-	str = get_next_line(fd);
-	while (str[ft_strlen(str) - 1] == '\n')
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		str = ft_strjoin2(str, line);
-		free(line);
-	}
-	// if (str[0] == '\n' || str[ft_strlen(str) - 1] == '\n')
-	// {
-	// 	printf("Error\n");
-	// 	exit(EXIT_FAILURE);
-	// }
-	printf("%s", str);
-	// printf ("\n\n");
-	split = ft_split(str, '\n');
-	// free(str);
+	str = maptostr(fd);
+	check_excess(str);
+	pe_count(str);
+	split = split_checkrec(str);
+	map_size(split);
+	map_closed(split);
+	free(str);
 	int i = -1;
-	while (split[++i + 1])
-		if (ft_strlen(split[i]) != ft_strlen(split[i + 1]))
-		{
-			printf("Error\n");
-			break ;
-		}
-	i = -1;
-	while (str[++i])
-		if (str[i] != '1' && str[i] != '0' && str[i] != 'P' &&
-			str[i] != 'C' && str[i] != 'E' && str[i] != '\n')
-		{
-			printf("Error\n");
-			break ;
-		}
+	while (split[++i])
+		printf("%s\n", split[i]);
 }

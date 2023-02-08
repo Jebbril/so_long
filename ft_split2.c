@@ -6,11 +6,27 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 18:49:14 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/05 18:51:16 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:46:25 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)s + i);
+	return (NULL);
+}
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
@@ -48,7 +64,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (ret);
 }
 
-static size_t	ft_toklen(char *s, char c)
+static size_t	ft_word(char *s, char c)
 {
 	size_t	ret;
 
@@ -76,7 +92,7 @@ char	**ft_split(char *s, char c)
 	if (!s)
 		return (0);
 	i = 0;
-	ret = malloc(sizeof(char *) * (ft_toklen(s, c) + 1));
+	ret = malloc(sizeof(char *) * (ft_word(s, c) + 1));
 	if (!ret)
 		return (0);
 	while (*s)
