@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/08 18:57:48 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:03:52 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,13 @@ void	map_parsing(int ac, char **av)
 	int		fd;
 	char	*str;
 	char	**split;
+	char	**sol;
 
 	fd = get_fd(ac, av);
 	str = maptostr(fd);
 	check_excess(str);
 	pe_count(str);
+	c_count(str);
 	split = split_checkrec(str);
 	map_size(split);
 	map_closed(split);
@@ -126,4 +128,5 @@ void	map_parsing(int ac, char **av)
 	int i = -1;
 	while (split[++i])
 		printf("%s\n", split[i]);
+	printf("\n\n");
 }

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:45:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/08 19:36:18 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/09 16:42:08 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@ void	pe_count(char *str)
 	if (player != 1 || exitt != 1)
 	{
 		write(2, "Error\nWrong number of players or exits", 39);
+		free(str);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	c_count(char *str)
+{
+	int	colect;
+	int	i;
+
+	colect = 0;
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == 'C')
+			colect++;
+	}
+	if (colect < 1)
+	{
+		write(2, "Error\nWrong number of collectibles", 35);
 		free(str);
 		exit(EXIT_FAILURE);
 	}
@@ -76,7 +96,7 @@ void	map_closed(char **split)
 	}
 	while (split[++i + 1])
 	{
-		if (split[i][0] != '1' || split[i][ft_strlen(split[i])] != '1')
+		if (split[i][0] != '1' || split[i][ft_strlen(split[i]) - 1] != '1')
 		{
 			write(2, "Error\nMap not closed", 21);
 			exit(EXIT_FAILURE);
