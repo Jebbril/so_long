@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 18:41:51 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:44:18 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ t_pos	get_pos(char **split, char c);
 int		check_path(char **split, char **m, int x, int y);
 int		check_path2(char **split, char **m, int x, int y);
 int		backtrack(char **split);
+void	checknl_between(char *str);
 
 #endif

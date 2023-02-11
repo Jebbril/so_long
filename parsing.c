@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 18:37:48 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:44:54 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,22 @@ char	**split_checkrec(char *str)
 	return (split);
 }
 
+void	checknl_between(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i + 1])
+	{
+		if (str[i] == '\n' && str[i + 1] == '\n')
+		{
+			write(2, "Error\nNew line inside map", 26);
+			free(str);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
 void	map_parsing(int ac, char **av)
 {
 	int		fd;
@@ -118,6 +134,7 @@ void	map_parsing(int ac, char **av)
 	fd = get_fd(ac, av);
 	str = maptostr(fd);
 	check_excess(str);
+	checknl_between(str);
 	pe_count(str);
 	c_count(str);
 	split = split_checkrec(str);
