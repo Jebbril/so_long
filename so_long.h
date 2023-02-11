@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/09 18:48:13 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 17:07:27 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,10 @@ void	c_count(char *str);
 int		map_size(char **split);
 void	map_closed(char **split);
 void	free_matrix(char **matrice);
+char	**create_matrix(char **split);
+void	fill_matrix(char **split, char **m);
+t_pos	get_pos(char **split, char c);
+int	check_path(char **split, char **m, int x, int y);
+int	check_path2(char **split, char **m, int x, int y);
 
 #endif

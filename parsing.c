@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/09 17:03:52 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 17:07:55 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,36 @@ void	map_parsing(int ac, char **av)
 	split = split_checkrec(str);
 	map_size(split);
 	map_closed(split);
+	sol = create_matrix(split);
+	fill_matrix(split, sol);
 	free(str);
 	int i = -1;
 	while (split[++i])
 		printf("%s\n", split[i]);
 	printf("\n\n");
+	t_pos e = get_pos(split, 'E');
+	printf("e path : %d\n", check_path(split, sol, e.x, e.y));
+	i = -1;
+	while (sol[++i])
+		printf("%s\n", sol[i]);
+	fill_matrix(split, sol);
+	i = -1;
+	int	j = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (split[i][++j])
+		{
+			if (split[i][j] == 'C')
+			{
+				fill_matrix(split, sol);
+				printf("c path : %d\n", check_path2(split, sol, i, j));
+				break;
+			}
+		}
+	}
+	// t_pos col = get_pos(split, 'C');
+	// printf("c path : %d\n", check_path2(split, sol, col.x, col.y));
+	free_matrix(split);
+	free_matrix(sol);
 }
