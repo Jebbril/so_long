@@ -6,11 +6,9 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:39:00 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/05 16:39:00 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 18:36:55 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "so_long.h"
 
@@ -46,4 +44,48 @@ int	check_ext(char *str)
 	if (i == 5 && i <= len)
 		return (1);
 	return (0);
+}
+
+int	backtrack2(char **split, char **sol)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (split[i][++j])
+		{
+			if (split[i][j] == 'C')
+			{
+				fill_matrix(split, sol);
+				if (!(check_path2(split, sol, i, j)))
+					return (0);
+			}
+		}
+	}
+	return (1);
+}
+
+int	backtrack(char **split)
+{
+	char	**sol;
+	t_pos	e;
+
+	sol = create_matrix(split);
+	fill_matrix(split, sol);
+	e = get_pos(split, 'E');
+	if (!(check_path(split, sol, e.x, e.y)))
+	{
+		free_matrix(sol);
+		return (0);
+	}
+	if (!(backtrack2(split, sol)))
+	{
+		free_matrix(sol);
+		return (0);
+	}
+	free_matrix(sol);
+	return (1);
 }

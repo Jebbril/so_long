@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:51:17 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 17:12:59 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/11 18:30:25 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ int	check_path2(char **split, char **m, int x, int y)
 	if (m[x][y] == '1')
 		return (0);
 	m[x][y] = '1';
-	if (check_path2(split, m, x + 1, y))
-		return (1);
 	if (check_path2(split, m, x - 1, y))
 		return (1);
-	if (check_path2(split, m, x, y + 1))
-		return (1);
 	if (check_path2(split, m, x, y - 1))
+		return (1);
+	if (check_path2(split, m, x + 1, y))
+		return (1);
+	if (check_path2(split, m, x, y + 1))
 		return (1);
 	m[x][y] = '0';
 	return (0);
