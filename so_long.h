@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 19:44:18 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/12 13:52:32 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_pos
 int		ft_strlen(char *s);
 int		check_ext(char *str);
 char	**ft_split(char *s, char c);
-void	map_parsing(int ac, char **av);
+char	**map_parsing(int ac, char **av);
 char	*ft_strchr(const char *s, int c);
 void	pe_count(char *str);
 void	c_count(char *str);

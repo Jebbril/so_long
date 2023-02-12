@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 19:44:54 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/12 13:52:10 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	checknl_between(char *str)
 	}
 }
 
-void	map_parsing(int ac, char **av)
+char	**map_parsing(int ac, char **av)
 {
 	int		fd;
 	char	*str;
@@ -146,5 +146,5 @@ void	map_parsing(int ac, char **av)
 		write(2, "Error\nInvalid path", 19);
 		exit(EXIT_FAILURE);
 	}
-	free_matrix(split);
+	return (split);
 }
