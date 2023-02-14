@@ -6,33 +6,80 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/12 19:51:37 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:38:17 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	term_exit(t_var *var)
 {
-	mlx_t	*mlx;
-	char	**map;
-	int		rows;
-	int		cols;
+	mlx_terminate(var->mlx);
+	free_matrix(var->map);
+	write(2, "Error\nMlx failed", 17);
+}
 
-	map = map_parsing(ac, av);
-	cols = ft_strlen(map[0]);
-	rows = 0;
-	while (map[rows])
-		rows++;
-	mlx = mlx_init(cols * 50, rows * 50, "so_long", false);
-	if (!mlx)
+void	init_window(t_var *var)
+{
+	var->cols = ft_strlen(var->map[0]);
+	var->rows = 0;
+	while (var->map[var->rows])
+		var->rows++;
+	var->mlx = mlx_init(var->cols * 50, var->rows * 50, "so_long", false);
+	if (!var->mlx)
 	{
 		write(2, "Error\nMlx failed to initialize", 31);
+		free_matrix(var->map);
 		exit(EXIT_FAILURE);
 	}
-	xpm_t *xpm1 = mlx_load_xpm42("xpm42/floor.xpm42");
-	mlx_image_t *img1 = mlx_texture_to_image(mlx, &xpm1->texture);
-	int index = mlx_image_to_window(mlx, img1, 0, 0);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+}
+
+void	load_xpm(t_var *var)
+{
+	var->floor = mlx_load_xpm42("xpm42/floor.xpm42");
+	if (!var->floor)
+		term_exit(var);
+	var->wall = mlx_load_xpm42("xpm42/wall.xpm42");
+	if (!var->wall)
+		term_exit(var);
+	var->coin = mlx_load_xpm42("xpm42/coin1.xpm42");
+	if (!var->coin)
+		term_exit(var);
+	var->pleft = mlx_load_xpm42("xpm42/susleft.xpm42");
+	if (!var->pleft)
+		term_exit(var);
+	var->pright = mlx_load_xpm42("xpm42/susright.xpm42");
+	if (!var->pright)
+		term_exit(var);
+	var->exit = mlx_load_xpm42("xpm42/vent.xpm42");
+	if (!var->exit)
+		term_exit(var);
+}
+
+void	texture_img(t_var *var)
+{
+	var->floorimg = mlx_texture_to_image(var->mlx, &var->floor->texture);
+	var->wallimg = mlx_texture_to_image(var->mlx, &var->wall->texture);
+	var->coinimg = mlx_texture_to_image(var->mlx, &var->coin->texture);
+	var->pleftimg = mlx_texture_to_image(var->mlx, &var->pleft->texture);
+	var->prightimg = mlx_texture_to_image(var->mlx, &var->pright->texture);
+	var->exitimg = mlx_texture_to_image(var->mlx, &var->exit->texture);
+}
+
+int	main(int ac, char **av)
+{
+	t_var	var;
+
+	var.coincount = 0;
+	var.j = 0;
+	var.moves = 0;
+	var.map = map_parsing(ac, av);
+	init_window(&var);
+	load_xpm(&var);
+	texture_img(&var);
+	draw_map(&var);
+	put_player(&var);
+	mlx_key_hook(var.mlx, &hook, &var);
+	mlx_loop(var.mlx);
+	mlx_terminate(var.mlx);
 }

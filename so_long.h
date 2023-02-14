@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/12 13:52:32 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:34:48 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "gnl/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 # include "MLX42/MLX42.h"
 
 typedef struct s_pos
@@ -27,6 +28,37 @@ typedef struct s_pos
 	int	x;
 	int	y;
 }	t_pos;
+
+typedef struct s_var
+{
+	mlx_t		*mlx;
+	int			rows;
+	int			cols;
+	char		**map;
+	xpm_t		*floor;
+	xpm_t		*wall;
+	xpm_t		*coin;
+	xpm_t		*pleft;
+	xpm_t		*pright;
+	xpm_t		*exit;
+	mlx_image_t	*floorimg;
+	mlx_image_t	*wallimg;
+	mlx_image_t	*coinimg;
+	mlx_image_t	*pleftimg;
+	mlx_image_t	*prightimg;
+	mlx_image_t	*exitimg;
+	int			coincount;
+	int			i;
+	int			j;
+	int			windex;
+	int			findex;
+	int			cindex;
+	int			eindex;
+	int			plindex;
+	int			prindex;
+	int			moves;
+
+}	t_var;
 
 int		ft_strlen(char *s);
 int		check_ext(char *str);
@@ -45,5 +77,14 @@ int		check_path(char **split, char **m, int x, int y);
 int		check_path2(char **split, char **m, int x, int y);
 int		backtrack(char **split);
 void	checknl_between(char *str);
+void	check_excess(char *str);
+void	draw_map(t_var *var);
+void	put_player(t_var *var);
+void	hook(mlx_key_data_t keydata, void *param);
+void	move_up(t_var *v, mlx_instance_t pl, mlx_instance_t pr);
+void	move_down(t_var *v, mlx_instance_t pl, mlx_instance_t pr);
+void	move_left(t_var *v, mlx_instance_t pl, mlx_instance_t pr);
+void	move_right(t_var *v, mlx_instance_t pl, mlx_instance_t pr);
+void	eatnexit(t_var *v, mlx_instance_t pl, mlx_instance_t pr);
 
 #endif

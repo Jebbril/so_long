@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:38:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/12 13:52:10 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:34:05 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,6 @@ char	*maptostr(int fd)
 		line = get_next_line(fd);
 	}
 	return (str);
-}
-
-void	check_excess(char *str)
-{
-	int		i;
-	char	*elts;
-
-	elts = "10PCE\n";
-	if (str[0] == '\n' || str[ft_strlen(str) - 1] == '\n')
-	{
-		write(2, "Error\nNew line at begining or end of map", 41);
-		free (str);
-		exit(EXIT_FAILURE);
-	}
-	i = -1;
-	while (str[++i])
-	{
-		if (!ft_strchr(elts, str[i]))
-		{
-			write(2, "Error\nUndifined map element(s)", 31);
-			free (str);
-			exit(EXIT_FAILURE);
-		}
-	}
 }
 
 char	**split_checkrec(char *str)

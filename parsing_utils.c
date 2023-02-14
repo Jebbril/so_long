@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:39:00 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/11 18:36:55 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/14 19:34:19 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,30 @@ int	check_ext(char *str)
 	return (0);
 }
 
+void	check_excess(char *str)
+{
+	int		i;
+	char	*elts;
+
+	elts = "10PCE\n";
+	if (str[0] == '\n' || str[ft_strlen(str) - 1] == '\n')
+	{
+		write(2, "Error\nNew line at begining or end of map", 41);
+		free (str);
+		exit(EXIT_FAILURE);
+	}
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_strchr(elts, str[i]))
+		{
+			write(2, "Error\nUndifined map element(s)", 31);
+			free (str);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
 int	backtrack2(char **split, char **sol)
 {
 	int	i;
@@ -60,7 +84,7 @@ int	backtrack2(char **split, char **sol)
 			if (split[i][j] == 'C')
 			{
 				fill_matrix(split, sol);
-				if (!(check_path2(split, sol, i, j)))
+				if (!(check_path(split, sol, i, j)))
 					return (0);
 			}
 		}
