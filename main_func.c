@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:40:09 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/14 19:26:51 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/14 20:07:23 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void	hook(mlx_key_data_t keydata, void *param)
 	pr = v->prightimg->instances[0];
 	if (mlx_is_key_down(v->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(v->mlx);
-	move_up(v, pl, pr);
-	move_down(v, pl, pr);
-	move_left(v, pl, pr);
-	move_right(v, pl, pr);
+	if (keydata.key == MLX_KEY_W)
+		move_up(v, pl, pr);
+	else if (keydata.key == MLX_KEY_S)
+		move_down(v, pl, pr);
+	else if (keydata.key == MLX_KEY_A)
+		move_left(v, pl, pr);
+	else if (keydata.key == MLX_KEY_D)
+		move_right(v, pl, pr);
 	eatnexit(v, pl, pr);
 }
 
