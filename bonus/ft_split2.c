@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 18:49:14 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/08 17:46:25 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:55:40 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (0);
-	if (ft_strlen(s) < start)
+	if ((unsigned int)ft_strlen(s) < start)
 		len = 0;
-	if (ft_strlen(s + start) < len)
+	if ((size_t)ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)

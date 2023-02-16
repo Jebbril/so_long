@@ -6,35 +6,38 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 19:19:55 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/14 20:12:36 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/16 18:13:48 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_up(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
+void	move_up(t_var *v, mlx_instance_t pl)
 {
 	if (mlx_is_key_down(v->mlx, MLX_KEY_W)
 		&& v->map[pl.y / 50 - 1][pl.x / 50] != '1')
 	{
 		v->pleftimg->instances[0].y -= 50;
 		v->prightimg->instances[0].y -= 50;
-		ft_printf("%d\n", ++v->moves);
+		mlx_delete_image(v->mlx, v->string);
+		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
 	}
 }
 
-void	move_down(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
+void	move_down(t_var *v, mlx_instance_t pl)
 {
 	if (mlx_is_key_down(v->mlx, MLX_KEY_S)
 		&& v->map[pl.y / 50 + 1][pl.x / 50] != '1')
 	{
 		v->pleftimg->instances[0].y += 50;
 		v->prightimg->instances[0].y += 50;
-		ft_printf("%d\n", ++v->moves);
+		mlx_delete_image(v->mlx, v->string);
+		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		
 	}
 }
 
-void	move_left(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
+void	move_left(t_var *v, mlx_instance_t pl)
 {
 	if (mlx_is_key_down(v->mlx, MLX_KEY_A)
 		&& v->map[pl.y / 50][pl.x / 50 - 1] != '1')
@@ -43,11 +46,12 @@ void	move_left(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
 		v->prightimg->instances[0].enabled = false;
 		v->pleftimg->instances[0].x -= 50;
 		v->prightimg->instances[0].x -= 50;
-		ft_printf("%d\n", ++v->moves);
+		mlx_delete_image(v->mlx, v->string);
+		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
 	}
 }
 
-void	move_right(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
+void	move_right(t_var *v, mlx_instance_t pl)
 {
 	if (mlx_is_key_down(v->mlx, MLX_KEY_D)
 		&& v->map[pl.y / 50][pl.x / 50 + 1] != '1')
@@ -56,11 +60,13 @@ void	move_right(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
 		v->prightimg->instances[0].enabled = true;
 		v->pleftimg->instances[0].x += 50;
 		v->prightimg->instances[0].x += 50;
-		ft_printf("%d\n", ++v->moves);
+		mlx_delete_image(v->mlx, v->string);
+		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		
 	}
 }
 
-void	eatnexit(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
+void	eatnexit(t_var *v, mlx_instance_t pl)
 {
 	if (v->map[pl.y / 50][pl.x / 50] == 'E' && v->j == v->coincount)
 		mlx_close_window(v->mlx);
@@ -72,6 +78,11 @@ void	eatnexit(t_var *v, mlx_instance_t pl, mlx_instance_t pr)
 		{
 			v->coinimg->instances[v->i].enabled = false;
 			v->j++;
+		}
+		if (v->j == v->coincount)
+		{
+			v->exitcimg->instances[0].enabled = false;
+			v->exitimg->instances[0].enabled = true;
 		}
 		v->i++;
 	}
