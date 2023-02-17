@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 15:21:38 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/17 19:19:33 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	term_exit(t_var *var)
 {
@@ -82,9 +82,12 @@ int	main(int ac, char **av)
 	init_window(&var);
 	load_xpm(&var);
 	texture_img(&var);
+	load_coinxpm(&var);
+	coin_texture(&var);
 	draw_map(&var);
 	put_exitc(&var);
 	put_player(&var);
+	var.string = mlx_put_string(var.mlx, "0", 15, 15);
 	mlx_key_hook(var.mlx, &hook, &var);
 	mlx_loop(var.mlx);
 	mlx_terminate(var.mlx);
