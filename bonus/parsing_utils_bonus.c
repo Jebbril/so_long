@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 16:39:00 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 15:00:05 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 15:00:40 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_excess(char *str)
 	int		i;
 	char	*elts;
 
-	elts = "10PCE\n";
+	elts = "10PCEI\n";
 	if (str[0] == '\n' || str[ft_strlen(str) - 1] == '\n')
 	{
 		write(2, "Error\nNew line at begining or end of map", 41);

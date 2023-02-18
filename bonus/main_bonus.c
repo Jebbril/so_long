@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 14:09:36 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:24:12 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	load_xpm(t_var *var)
 	var->exitc = mlx_load_xpm42("xpm42/ventc.xpm42");
 	if (!var->exitc)
 		term_exit(var);
+	load_enm(var);
 }
 
 void	texture_img(t_var *var)
@@ -69,6 +70,8 @@ void	texture_img(t_var *var)
 	var->prightimg = mlx_texture_to_image(var->mlx, &var->pright->texture);
 	var->exitimg = mlx_texture_to_image(var->mlx, &var->exit->texture);
 	var->exitcimg = mlx_texture_to_image(var->mlx, &var->exitc->texture);
+	var->enml1img = mlx_texture_to_image(var->mlx, &var->enml1->texture);
+	var->enmr1img = mlx_texture_to_image(var->mlx, &var->enmr1->texture);
 }
 
 int	main(int ac, char **av)
@@ -89,6 +92,7 @@ int	main(int ac, char **av)
 	put_player(&var);
 	var.string = mlx_put_string(var.mlx, "0", 15, 15);
 	mlx_loop_hook(var.mlx, &coin_anim, &var);
+	mlx_loop_hook(var.mlx, &move_enemy, &var);
 	mlx_key_hook(var.mlx, &hook, &var);
 	mlx_loop(var.mlx);
 	mlx_terminate(var.mlx);

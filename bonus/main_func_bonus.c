@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:40:09 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 18:40:51 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:22:20 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,27 @@ void	put_exitc(t_var *var)
 	var->exitimg->instances[0].enabled = false;
 }
 
+void	drawenemies(t_var *v)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	v->enmcount = 0;
+	while (v->map[++i])
+	{
+		j = -1;
+		while (v->map[i][++j])
+		{
+			if (v->map[i][j] == 'I')
+			{
+				put_enemies(v, j * 50, i * 50);
+				v->enmcount++;
+			}
+		}
+	}
+}
+
 void	draw_map(t_var *var)
 {
 	int	i;
@@ -78,10 +99,9 @@ void	draw_map(t_var *var)
 			if (var->map[i][j] == 'C')
 			{
 				var->coincount++;
-				// var->cindex = mlx_image_to_window
-				// 	(var->mlx, var->coinimg, j * 50, i * 50);
 				drawcoin(var, j * 50, i * 50);
 			}
 		}
 	}
+	drawenemies(var);
 }

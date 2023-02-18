@@ -6,7 +6,7 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 15:20:16 by orakib            #+#    #+#              #
-#    Updated: 2023/02/18 14:56:31 by orakib           ###   ########.fr        #
+#    Updated: 2023/02/18 15:18:07 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ BNS_SRC = bonus/free_matrix_bonus.c bonus/ft_split2_bonus.c bonus/main_func_bonu
 		bonus/parsing_utils_bonus.c bonus/parsing_bonus.c bonus/parsing2_bonus.c \
 		bonus/gnl/get_next_line.c bonus/gnl/get_next_line_utils.c \
 		bonus/ft_itoa_bonus.c bonus/draw_coin_bonus.c \
-		bonus/remove_coin.c	
+		bonus/remove_coin_bonus.c bonus/enemy_bonus.c
 
 HEADER = mandatory/so_long.h
 

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 19:19:55 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 14:51:49 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:00:11 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	move_right(t_var *v, mlx_instance_t pl)
 
 void	eatnexit(t_var *v, mlx_instance_t pl)
 {
+	// if (v->map[pl.y / 50][pl.x / 50] == 'I')
+	// 	mlx_close_window(v->mlx);
 	if (v->map[pl.y / 50][pl.x / 50] == 'E' && v->j == v->coincount)
 		mlx_close_window(v->mlx);
 	while (v->i < v->coincount)
