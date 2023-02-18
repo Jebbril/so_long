@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:05:33 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 18:51:01 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 19:18:36 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	move_enemy2(t_var *v, int i)
 		[v->enml1img->instances[i].x / 50 - 1] != '1'
 		&& v->enml1img->instances[i].enabled)
 	{
-		v->enmr1img->instances[i].x -= 10;
-		v->enml1img->instances[i].x -= 10;
+		v->enmr1img->instances[i].x -= 5;
+		v->enml1img->instances[i].x -= 5;
 	}
 	if (v->map[v->enml1img->instances[i].y / 50]
 		[v->enml1img->instances[i].x / 50 - 1] == '1')
@@ -62,8 +62,8 @@ void	move_enemy(void *param)
 			[v->enml1img->instances[i].x / 50 + 2] != '1'
 			&& v->enmr1img->instances[i].enabled)
 		{
-			v->enmr1img->instances[i].x += 10;
-			v->enml1img->instances[i].x += 10;
+			v->enmr1img->instances[i].x += 5;
+			v->enml1img->instances[i].x += 5;
 		}
 		if (v->map[v->enml1img->instances[i].y / 50]
 			[v->enml1img->instances[i].x / 50 + 2] == '1')
