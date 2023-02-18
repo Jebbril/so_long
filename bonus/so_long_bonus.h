@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 18:28:11 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:52:32 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,8 @@ void	load_coinxpm(t_var *var);
 void	coin_texture(t_var *var);
 void	drawcoin(t_var *v, int i, int j);
 void	term_exit(t_var *var);
+void	coin_anim(void *param);
+void	disablecoin(t_var *v);
+int	checkcoin(t_var *v);
 
 #endif

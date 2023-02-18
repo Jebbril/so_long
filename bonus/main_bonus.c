@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 19:19:33 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:09:36 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	main(int ac, char **av)
 	put_exitc(&var);
 	put_player(&var);
 	var.string = mlx_put_string(var.mlx, "0", 15, 15);
+	mlx_loop_hook(var.mlx, &coin_anim, &var);
 	mlx_key_hook(var.mlx, &hook, &var);
 	mlx_loop(var.mlx);
 	mlx_terminate(var.mlx);

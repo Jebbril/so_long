@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:15:18 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 19:19:00 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:22:39 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,61 @@ void	drawcoin(t_var *v, int i, int j)
 	v->coinn6img->instances[0].enabled = false;
 	v->coinn7img->instances[0].enabled = false;
 	v->coinn8img->instances[0].enabled = false;
+}
+
+void	coin_anim2(t_var *v, int i)
+{
+	if (v->coinn4img->instances[i].enabled)
+	{
+		v->coinn4img->instances[i].enabled = false;
+		v->coinn5img->instances[i].enabled = true;
+	}
+	else if (v->coinn5img->instances[i].enabled)
+	{
+		v->coinn5img->instances[i].enabled = false;
+		v->coinn6img->instances[i].enabled = true;
+	}
+	else if (v->coinn6img->instances[i].enabled)
+	{
+		v->coinn6img->instances[i].enabled = false;
+		v->coinn7img->instances[i].enabled = true;
+	}
+	else if (v->coinn7img->instances[i].enabled)
+	{
+		v->coinn7img->instances[i].enabled = false;
+		v->coinn8img->instances[i].enabled = true;
+	}
+	else if (v->coinn8img->instances[i].enabled)
+	{
+		v->coinn8img->instances[i].enabled = false;
+		v->coinn1img->instances[i].enabled = true;
+	}
+}
+
+void	coin_anim(void *param)
+{
+	t_var	*v;
+	int		i;
+
+	v = param;
+	i = -1;
+	while (++i < v->coincount)
+	{
+		if (v->coinn1img->instances[i].enabled)
+		{
+			v->coinn1img->instances[i].enabled = false;
+			v->coinn2img->instances[i].enabled = true;
+		}
+		else if (v->coinn2img->instances[i].enabled)
+		{
+			v->coinn2img->instances[i].enabled = false;
+			v->coinn3img->instances[i].enabled = true;
+		}
+		else if (v->coinn3img->instances[i].enabled)
+		{
+			v->coinn3img->instances[i].enabled = false;
+			v->coinn4img->instances[i].enabled = true;
+		}
+		coin_anim2(v, i);
+	}
 }

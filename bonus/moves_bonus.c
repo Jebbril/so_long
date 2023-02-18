@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 19:19:55 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/17 18:46:13 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:51:49 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	eatnexit(t_var *v, mlx_instance_t pl)
 	{
 		if (pl.y == v->coinn1img->instances[v->i].y
 			&& pl.x == v->coinn1img->instances[v->i].x
-			&& v->coinn1img->instances[v->i].enabled == true)
+			&& checkcoin(v))
 		{
-			v->coinn1img->instances[v->i].enabled = false;
+			disablecoin(v);
 			v->j++;
 		}
 		if (v->j == v->coincount)
