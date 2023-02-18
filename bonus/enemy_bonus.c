@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:05:33 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 18:37:07 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:51:01 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,48 @@ void	put_enemies(t_var *v, int i, int j)
 	v->enml1img->instances[v->enmcount].enabled = false;
 }
 
-void	move_enemy(void *param)
+void	move_enemy2(t_var *v, int i)
 {
-	t_var	*v;
-
-	v = param;
-	int i = -1;
-	while (++i < v->enmcount)
-	{
-	if (v->map[v->enml1img->instances[i].y / 50][v->enml1img->instances[i].x / 50 + 2] != '1' && v->enmr1img->instances[i].enabled)
-	{
-		v->enmr1img->instances[i].x += 10;
-		v->enml1img->instances[i].x += 10;
-	}
-	if (v->map[v->enml1img->instances[i].y / 50][v->enml1img->instances[i].x / 50 + 2] == '1')
-	{
-		v->enmr1img->instances[i].enabled = false;
-		v->enml1img->instances[i].enabled = true;
-	}
-	if (v->map[v->enml1img->instances[i].y / 50][v->enml1img->instances[i].x / 50 - 1] != '1' && v->enml1img->instances[i].enabled)
+	if (v->map[v->enml1img->instances[i].y / 50]
+		[v->enml1img->instances[i].x / 50 - 1] != '1'
+		&& v->enml1img->instances[i].enabled)
 	{
 		v->enmr1img->instances[i].x -= 10;
 		v->enml1img->instances[i].x -= 10;
 	}
-	if (v->map[v->enml1img->instances[i].y / 50][v->enml1img->instances[i].x / 50 - 1] == '1')
+	if (v->map[v->enml1img->instances[i].y / 50]
+		[v->enml1img->instances[i].x / 50 - 1] == '1')
 	{
 		v->enmr1img->instances[i].enabled = true;
 		v->enml1img->instances[i].enabled = false;
 	}
-	if (v->enmr1img->instances[i].x == v->pleftimg->instances[0].x && v->enmr1img->instances[i].y == v->pleftimg->instances[0].y)
+	if (v->enmr1img->instances[i].x == v->pleftimg->instances[0].x
+		&& v->enmr1img->instances[i].y == v->pleftimg->instances[0].y)
 		mlx_close_window(v->mlx);
+}
+
+void	move_enemy(void *param)
+{
+	t_var	*v;
+	int		i;
+
+	v = param;
+	i = -1;
+	while (++i < v->enmcount)
+	{
+		if (v->map[v->enml1img->instances[i].y / 50]
+			[v->enml1img->instances[i].x / 50 + 2] != '1'
+			&& v->enmr1img->instances[i].enabled)
+		{
+			v->enmr1img->instances[i].x += 10;
+			v->enml1img->instances[i].x += 10;
+		}
+		if (v->map[v->enml1img->instances[i].y / 50]
+			[v->enml1img->instances[i].x / 50 + 2] == '1')
+		{
+			v->enmr1img->instances[i].enabled = false;
+			v->enml1img->instances[i].enabled = true;
+		}
+		move_enemy2(v, i);
 	}
 }
