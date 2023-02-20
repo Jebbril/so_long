@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 18:49:14 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/16 15:55:40 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:07:07 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,36 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (ret);
 }
 
-static size_t	ft_word(char *s, char c)
+static size_t	ft_countw(char *s, char c)
 {
-	size_t	ret;
+	size_t	count;
 
-	ret = 0;
+	count = 0;
 	while (*s)
 	{
 		if (*s != c)
 		{
-			++ret;
+			++count;
 			while (*s && *s != c)
 				++s;
 		}
 		else
 			++s;
 	}
-	return (ret);
+	return (count);
 }
 
 char	**ft_split(char *s, char c)
 {
-	char	**ret;
+	char	**split;
 	size_t	i;
 	size_t	len;
 
 	if (!s)
 		return (0);
 	i = 0;
-	ret = malloc(sizeof(char *) * (ft_word(s, c) + 1));
-	if (!ret)
+	split = malloc(sizeof(char *) * (ft_countw(s, c) + 1));
+	if (!split)
 		return (0);
 	while (*s)
 	{
@@ -102,11 +102,11 @@ char	**ft_split(char *s, char c)
 			len = 0;
 			while (*s && *s != c && ++len)
 				++s;
-			ret[i++] = ft_substr(s - len, 0, len);
+			split[i++] = ft_substr(s - len, 0, len);
 		}
 		else
 			++s;
 	}
-	ret[i] = 0;
-	return (ret);
+	split[i] = 0;
+	return (split);
 }

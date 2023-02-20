@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/20 15:50:27 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:12:29 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_var
 	mlx_image_t	*coinn8img;
 	int			enmcount;
 	int			delay;
+	char		*countstr;
 
 }	t_var;
 

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 19:19:55 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/20 15:50:08 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:15:52 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	move_up(t_var *v, mlx_instance_t pl)
 		v->pleftimg->instances[0].y -= 50;
 		v->prightimg->instances[0].y -= 50;
 		mlx_delete_image(v->mlx, v->string);
-		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		v->countstr = ft_itoa(++v->moves);
+		v->string = mlx_put_string(v->mlx, v->countstr, 15, 15);
+		free(v->countstr);
 	}
 }
 
@@ -32,7 +34,9 @@ void	move_down(t_var *v, mlx_instance_t pl)
 		v->pleftimg->instances[0].y += 50;
 		v->prightimg->instances[0].y += 50;
 		mlx_delete_image(v->mlx, v->string);
-		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		v->countstr = ft_itoa(++v->moves);
+		v->string = mlx_put_string(v->mlx, v->countstr, 15, 15);
+		free(v->countstr);
 	}
 }
 
@@ -46,7 +50,9 @@ void	move_left(t_var *v, mlx_instance_t pl)
 		v->pleftimg->instances[0].x -= 50;
 		v->prightimg->instances[0].x -= 50;
 		mlx_delete_image(v->mlx, v->string);
-		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		v->countstr = ft_itoa(++v->moves);
+		v->string = mlx_put_string(v->mlx, v->countstr, 15, 15);
+		free(v->countstr);
 	}
 }
 
@@ -60,7 +66,9 @@ void	move_right(t_var *v, mlx_instance_t pl)
 		v->pleftimg->instances[0].x += 50;
 		v->prightimg->instances[0].x += 50;
 		mlx_delete_image(v->mlx, v->string);
-		v->string = mlx_put_string(v->mlx, ft_itoa(++v->moves), 15, 15);
+		v->countstr = ft_itoa(++v->moves);
+		v->string = mlx_put_string(v->mlx, v->countstr, 15, 15);
+		free(v->countstr);
 	}
 }
 

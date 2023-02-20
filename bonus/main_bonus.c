@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/20 13:18:49 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:16:37 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int ac, char **av)
 	var.j = 0;
 	var.moves = 0;
 	var.delay = 0;
+	var.countstr = NULL;
 	var.map = map_parsing(ac, av);
 	init_window(&var);
 	load_xpm(&var);
