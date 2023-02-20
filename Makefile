@@ -6,7 +6,7 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 15:20:16 by orakib            #+#    #+#              #
-#    Updated: 2023/02/18 15:18:07 by orakib           ###   ########.fr        #
+#    Updated: 2023/02/20 15:49:41 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ BNS_SRC = bonus/free_matrix_bonus.c bonus/ft_split2_bonus.c bonus/main_func_bonu
 		bonus/parsing_utils_bonus.c bonus/parsing_bonus.c bonus/parsing2_bonus.c \
 		bonus/gnl/get_next_line.c bonus/gnl/get_next_line_utils.c \
 		bonus/ft_itoa_bonus.c bonus/draw_coin_bonus.c \
-		bonus/remove_coin_bonus.c bonus/enemy_bonus.c
+		bonus/remove_coin_bonus.c bonus/enemy_bonus.c \
+		bonus/ft_printf/ft_printf.c bonus/ft_printf/ft_printf_utils1.c \
+		bonus/ft_printf/ft_printf_utils2.c
 
 HEADER = mandatory/so_long.h
 
@@ -45,10 +47,10 @@ all: $(NAME)
 bonus: $(BONUS)
 
 $(BONUS): $(BNS_OBJ)
-	$(CC) $(CFLAGS) -o $(BONUS) $(BNS_OBJ) libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	$(CC) $(CFLAGS) -o $(BONUS) $(BNS_OBJ) MLX/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) MLX/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 mandatory/%.o: mandatory/%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -59,8 +61,8 @@ clean:
 	@rm -f $(OBJ) $(BNS_OBJ)
 
 fclean: clean
-	@rm -f $(NAME) $(BNS)
+	@rm -f $(NAME) $(BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

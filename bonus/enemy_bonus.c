@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:05:33 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 19:18:36 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 15:51:56 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	move_enemy2(t_var *v, int i)
 {
 	if (v->map[v->enml1img->instances[i].y / 50]
 		[v->enml1img->instances[i].x / 50 - 1] != '1'
-		&& v->enml1img->instances[i].enabled)
+		&& v->enml1img->instances[i].enabled && v->delay == 20)
 	{
-		v->enmr1img->instances[i].x -= 5;
-		v->enml1img->instances[i].x -= 5;
+		v->enmr1img->instances[i].x -= 50;
+		v->enml1img->instances[i].x -= 50;
+		v->delay = 0;
 	}
 	if (v->map[v->enml1img->instances[i].y / 50]
 		[v->enml1img->instances[i].x / 50 - 1] == '1')
@@ -46,7 +47,10 @@ void	move_enemy2(t_var *v, int i)
 	}
 	if (v->enmr1img->instances[i].x == v->pleftimg->instances[0].x
 		&& v->enmr1img->instances[i].y == v->pleftimg->instances[0].y)
+	{
 		mlx_close_window(v->mlx);
+		ft_printf("YOU LOSE!\n");
+	}
 }
 
 void	move_enemy(void *param)
@@ -59,18 +63,20 @@ void	move_enemy(void *param)
 	while (++i < v->enmcount)
 	{
 		if (v->map[v->enml1img->instances[i].y / 50]
-			[v->enml1img->instances[i].x / 50 + 2] != '1'
-			&& v->enmr1img->instances[i].enabled)
+			[v->enml1img->instances[i].x / 50 + 1] != '1'
+			&& v->enmr1img->instances[i].enabled && v->delay == 20)
 		{
-			v->enmr1img->instances[i].x += 5;
-			v->enml1img->instances[i].x += 5;
+			v->enmr1img->instances[i].x += 50;
+			v->enml1img->instances[i].x += 50;
+			v->delay = 0;
 		}
 		if (v->map[v->enml1img->instances[i].y / 50]
-			[v->enml1img->instances[i].x / 50 + 2] == '1')
+			[v->enml1img->instances[i].x / 50 + 1] == '1')
 		{
 			v->enmr1img->instances[i].enabled = false;
 			v->enml1img->instances[i].enabled = true;
 		}
 		move_enemy2(v, i);
 	}
+	v->delay++;
 }

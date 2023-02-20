@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 18:24:12 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 13:18:49 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int ac, char **av)
 	var.coincount = 0;
 	var.j = 0;
 	var.moves = 0;
+	var.delay = 0;
 	var.map = map_parsing(ac, av);
 	init_window(&var);
 	load_xpm(&var);
@@ -96,4 +97,5 @@ int	main(int ac, char **av)
 	mlx_key_hook(var.mlx, &hook, &var);
 	mlx_loop(var.mlx);
 	mlx_terminate(var.mlx);
+	free_matrix(var.map);
 }

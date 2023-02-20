@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/16 17:49:55 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 14:09:06 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <errno.h>
 # include "gnl/get_next_line.h"
 # include "ft_printf/ft_printf.h"
-# include "../MLX42/MLX42.h"
+# include "../MLX/include/MLX42/MLX42.h"
 
 typedef struct s_pos
 {

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/18 18:21:50 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/20 15:50:27 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "gnl/get_next_line.h"
-# include "../MLX42/MLX42.h"
+# include "../MLX/include/MLX42/MLX42.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_pos
 {
@@ -81,6 +82,7 @@ typedef struct s_var
 	mlx_image_t	*coinn7img;
 	mlx_image_t	*coinn8img;
 	int			enmcount;
+	int			delay;
 
 }	t_var;
 
