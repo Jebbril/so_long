@@ -6,7 +6,7 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 15:20:16 by orakib            #+#    #+#              #
-#    Updated: 2023/02/20 15:49:41 by orakib           ###   ########.fr        #
+#    Updated: 2023/02/21 18:46:33 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = mandatory/free_matrix.c mandatory/ft_split2.c mandatory/main_func.c \
 		mandatory/parsing_utils.c mandatory/parsing.c mandatory/parsing2.c \
 		mandatory/gnl/get_next_line.c mandatory/gnl/get_next_line_utils.c \
 		mandatory/ft_printf/ft_printf.c mandatory/ft_printf/ft_printf_utils1.c \
-		mandatory/ft_printf/ft_printf_utils2.c
+		mandatory/ft_printf/ft_printf_utils2.c mandatory/delete.c
 		
 BNS_SRC = bonus/free_matrix_bonus.c bonus/ft_split2_bonus.c bonus/main_func_bonus.c \
 		bonus/main_bonus.c bonus/moves_bonus.c bonus/parsing_backtrack_bonus.c \
@@ -28,7 +28,7 @@ BNS_SRC = bonus/free_matrix_bonus.c bonus/ft_split2_bonus.c bonus/main_func_bonu
 		bonus/ft_itoa_bonus.c bonus/draw_coin_bonus.c \
 		bonus/remove_coin_bonus.c bonus/enemy_bonus.c \
 		bonus/ft_printf/ft_printf.c bonus/ft_printf/ft_printf_utils1.c \
-		bonus/ft_printf/ft_printf_utils2.c
+		bonus/ft_printf/ft_printf_utils2.c bonus/delete_bonus.c
 
 HEADER = mandatory/so_long.h
 

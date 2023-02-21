@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/20 14:09:06 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/21 18:43:03 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	move_left(t_var *v, mlx_instance_t pl);
 void	move_right(t_var *v, mlx_instance_t pl);
 void	eatnexit(t_var *v, mlx_instance_t pl);
 void	put_exitc(t_var *var);
+void	delete2(t_var *var);
 
 #endif

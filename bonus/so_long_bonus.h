@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 18:07:38 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/20 16:12:29 by orakib           ###   ########.fr       */
+/*   Updated: 2023/02/21 18:42:57 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int		checkcoin(t_var *v);
 void	load_enm(t_var *v);
 void	put_enemies(t_var *v, int i, int j);
 void	move_enemy(void *param);
+void	delete2(t_var *var);
 
 #endif
